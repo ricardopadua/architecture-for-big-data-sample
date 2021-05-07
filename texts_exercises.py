@@ -16,10 +16,10 @@ source = dict((file_name, file_contents(file_name)) for file_name in text_files)
 def mapfn(k, v):
     print 'map' + k
     from stopwords import allStopWords
-        for line in v.splitlines():
-            for word in line.split():
-                if (word not in allStopWords ):
-                    yield word, 1
+    for line in v.splitlines():
+        for word in line.split():
+            if (word not in allStopWords ):
+                yield word, 1
 
 def reducefn(k, v):
     print 'reduce ' + k
@@ -36,5 +36,5 @@ results = s.run_server(password="changeme")
 
 # print results
 w = csv.writer(open("result.csv", "w"))
-form k, v in results.items():
+for k, v in results.items():
     w.writerow([k, v])
